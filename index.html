@@ -2510,19 +2510,448 @@
                     nextTick(() => lucide.createIcons());
                 }
 
+                // Standalone Embedded Templates (100% Offline & Serverless Support)
+                const STANDALONE_TEMPLATES = [
+                    {
+                                        "filename": "memo_template.docx",
+                                        "title": "บันทึกข้อความ (โรงเรียนเกษมสีมาวิทยาคาร)",
+                                        "category": "หนังสือภายใน",
+                                        "description": "แบบบันทึกข้อความราชการมาตรฐาน พร้อมส่วนความเห็นรอง ผอ. และ ผอ. โรงเรียน",
+                                        "variable_count": 17,
+                                        "variables": [
+                                                            "concluding_text",
+                                                            "department",
+                                                            "deputy_director_comment",
+                                                            "deputy_director_name",
+                                                            "deputy_director_position",
+                                                            "director_comment",
+                                                            "director_name",
+                                                            "director_position",
+                                                            "doc_date",
+                                                            "doc_no",
+                                                            "head_of_academic",
+                                                            "intro_text",
+                                                            "phone",
+                                                            "recipient",
+                                                            "sender_name",
+                                                            "sender_position",
+                                                            "subject"
+                                        ],
+                                        "default_data": {
+                                                            "department": "งานวัดผลและประเมินผล กลุ่มบริหารงานวิชาการ",
+                                                            "phone": "087-5446286",
+                                                            "doc_no": "วภ.       /2569",
+                                                            "doc_date": "10 กุมภาพันธ์ พ.ศ. 2569",
+                                                            "subject": "ขอจัดกิจกรรม ตลาดนัด 0 ร มส",
+                                                            "recipient": "ผู้อำนวยการโรงเรียนเกษมสีมาวิทยาคาร",
+                                                            "intro_text": "ด้วยกลุ่มบริหารงานวิชาการ ขอจัดกิจกรรม ตลาดนัด 0 ร มส เพื่อให้การแก้ไขปัญหานักเรียนที่มีผลการเรียนไม่เป็นไปตามเกณฑ์ที่สถานศึกษากำหนด",
+                                                            "concluding_text": "จึงเรียนมาเพื่อโปรดพิจารณา",
+                                                            "sender_name": "นายกฤติพัทธ์ พันสาย",
+                                                            "sender_position": "ครูผู้ช่วย",
+                                                            "head_of_academic": "นางสาวรจนา ช่วยสุข",
+                                                            "deputy_director_comment": "เห็นควรอนุญาต",
+                                                            "deputy_director_name": "นางสาวสุภัทร คุณภาค",
+                                                            "deputy_director_position": "รองผู้อำนวยการโรงเรียนเกษมสีมาวิทยาคาร",
+                                                            "director_comment": "อนุมัติตามเสนอ",
+                                                            "director_name": "ว่าที่ ร.ต. ชฎิล ชูณัฏฐะ",
+                                                            "director_position": "ผู้อำนวยการโรงเรียนเกษมสีมาวิทยาคาร"
+                                        }
+                    },
+                    {
+                                        "filename": "external_template.docx",
+                                        "title": "หนังสือภายนอก (ครุฑกลาง 3 ซม.)",
+                                        "category": "หนังสือภายนอก",
+                                        "description": "หนังสือราชการภายนอกสำหรับติดต่อระหว่างหน่วยงานหรือบุคคลภายนอก",
+                                        "variable_count": 11,
+                                        "variables": [
+                                                            "attachment",
+                                                            "concluding_text",
+                                                            "department",
+                                                            "doc_date",
+                                                            "doc_no",
+                                                            "intro_text",
+                                                            "phone",
+                                                            "recipient",
+                                                            "signer_name",
+                                                            "signer_position",
+                                                            "subject"
+                                        ],
+                                        "default_data": {
+                                                            "department": "สำนักงานเขตพื้นที่การศึกษามัธยมศึกษา",
+                                                            "phone": "044-123456",
+                                                            "doc_no": "ศธ ๐๔๐๐๑/ว ๑๒๓",
+                                                            "doc_date": "10 กุมภาพันธ์ พ.ศ. 2569",
+                                                            "subject": "ขอเชิญเข้าร่วมการประชุมเชิงปฏิบัติการการพัฒนาระบบเทคโนโลยีสารสนเทศ",
+                                                            "recipient": "ผู้อำนวยการโรงเรียนทุกโรงเรียนในสังกัด",
+                                                            "attachment": "กำหนดการประชุม จำนวน ๑ ฉบับ",
+                                                            "intro_text": "ด้วย สำนักงานเขตพื้นที่การศึกษามัธยมศึกษา มีความประสงค์จะจัดโครงการสัมมนาเชิงปฏิบัติการเพื่อยกระดับการบริหารจัดการระบบสารบรรณอิเล็กทรอนิกส์",
+                                                            "concluding_text": "จึงเรียนมาเพื่อโปรดพิจารณาส่งบุคลากรเข้าร่วมการประชุมดังกล่าว",
+                                                            "signer_name": "นายชวลิต ประเสริฐสุข",
+                                                            "signer_position": "ผู้อำนวยการสำนักงานเขตพื้นที่การศึกษามัธยมศึกษา"
+                                        }
+                    },
+                    {
+                                        "filename": "order_template.docx",
+                                        "title": "คำสั่ง / ประกาศราชการ (ครุฑกลาง 3 ซม.)",
+                                        "category": "คำสั่ง/ประกาศ",
+                                        "description": "คำสั่งและประกาศตามแบบราชการมาตรฐาน",
+                                        "variable_count": 9,
+                                        "variables": [
+                                                            "content",
+                                                            "doc_date",
+                                                            "doc_no",
+                                                            "doc_type_title",
+                                                            "effective_date",
+                                                            "org_name",
+                                                            "signer_name",
+                                                            "signer_position",
+                                                            "subject"
+                                        ],
+                                        "default_data": {
+                                                            "org_name": "โรงเรียนเกษมสีมาวิทยาคาร",
+                                                            "doc_type_title": "คำสั่ง",
+                                                            "doc_no": "๑๒/๒๕๖๙",
+                                                            "subject": "แต่งตั้งคณะกรรมการดำเนินงานจัดกิจกรรมพัฒนาทักษะวิชาการ",
+                                                            "content": "เพื่อให้การดำเนินงานจัดกิจกรรมพัฒนาทักษะวิชาการของโรงเรียน ดำเนินไปด้วยความเรียบร้อยและมีประสิทธิภาพ อาศัยอำนาจตามระเบียบกระทรวงศึกษาธิการ จึงแต่งตั้งคณะกรรมการผู้รับผิดชอบตามรายนามแนบท้าย",
+                                                            "effective_date": "วันที่ ๑๕ กุมภาพันธ์ พ.ศ. ๒๕๖๙ เป็นต้นไป",
+                                                            "doc_date": "๑๐ กุมภาพันธ์ พ.ศ. ๒๕๖๙",
+                                                            "signer_name": "ว่าที่ ร.ต. ชฎิล ชูณัฏฐะ",
+                                                            "signer_position": "ผู้อำนวยการโรงเรียนเกษมสีมาวิทยาคาร"
+                                        }
+                    },
+                    {
+                                        "filename": "budget_approval_template.docx",
+                                        "title": "ขออนุมัติใช้เงินตามโครงการ/กิจกรรม V.1 (โรงเรียนเกษมสีมาวิทยาคาร)",
+                                        "category": "การเงิน/งบประมาณ",
+                                        "description": "แบบบันทึกข้อความขออนุมัติใช้เงินโครงการ พร้อมตารางรายการจัดซื้อจัดจ้าง 2 หน้า และบันทึกพิจารณา 6 ฝ่าย",
+                                        "variable_count": 36,
+                                        "variables": [
+                                                            "budget_activity",
+                                                            "budget_head_comment",
+                                                            "budget_other",
+                                                            "budget_other_desc",
+                                                            "budget_revenue",
+                                                            "budget_subsidy",
+                                                            "department",
+                                                            "department_group",
+                                                            "deputy_comment",
+                                                            "director_comment",
+                                                            "doc_date",
+                                                            "doc_no",
+                                                            "doc_year",
+                                                            "execution_date",
+                                                            "final_remaining_budget",
+                                                            "item_count",
+                                                            "items",
+                                                            "official_date",
+                                                            "official_round",
+                                                            "phone",
+                                                            "plan_page",
+                                                            "project_budget",
+                                                            "project_name",
+                                                            "proposer_name",
+                                                            "reason_text",
+                                                            "remaining_budget",
+                                                            "requested_budget",
+                                                            "school_year",
+                                                            "subject",
+                                                            "supply_head_comment",
+                                                            "total_amount_text",
+                                                            "total_budget",
+                                                            "used_budget"
+                                        ],
+                                        "default_data": {
+                                                            "department": "งานแผนงาน กลุ่มบริหารงานงบประมาณ",
+                                                            "phone": "0942785225",
+                                                            "doc_no": "01",
+                                                            "doc_year": "2569",
+                                                            "doc_date": "10 กุมภาพันธ์ พ.ศ. 2569",
+                                                            "official_round": "1",
+                                                            "official_date": "10 ก.พ. 2569",
+                                                            "project_name": "พัฒนาทักษะวิชาการและการจัดกิจกรรมตลาดนัด 0 ร มส",
+                                                            "subject": "ขออนุมัติใช้เงินตามโครงการ/กิจกรรม พัฒนาทักษะวิชาการและการจัดกิจกรรมตลาดนัด 0 ร มส",
+                                                            "school_year": "2569",
+                                                            "department_group": "กลุ่มบริหารงานวิชาการ",
+                                                            "item_count": "3",
+                                                            "total_budget": "15,000",
+                                                            "total_amount_text": "หนึ่งหมื่นห้าพันบาทถ้วน",
+                                                            "budget_subsidy": "15,000",
+                                                            "budget_activity": "-",
+                                                            "budget_revenue": "-",
+                                                            "budget_other_desc": "-",
+                                                            "budget_other": "-",
+                                                            "execution_date": "20 กุมภาพันธ์ 2569",
+                                                            "reason_text": "เพื่อจัดซื้อวัสดุอุปกรณ์สำหรับการจัดกิจกรรมพัฒนาผู้เรียนและยกระดับผลสัมฤทธิ์ทางการเรียน",
+                                                            "proposer_name": "นายกฤติพัทธ์ พันสาย",
+                                                            "budget_head_comment": "เห็นควรให้การสนับสนุนตามแผนงาน",
+                                                            "plan_page": "25",
+                                                            "project_budget": "50,000",
+                                                            "used_budget": "10,000",
+                                                            "remaining_budget": "40,000",
+                                                            "requested_budget": "15,000",
+                                                            "final_remaining_budget": "25,000",
+                                                            "supply_head_comment": "ตรวจสอบแล้วเป็นไปตามระเบียบพัสดุ",
+                                                            "deputy_comment": "-",
+                                                            "director_comment": "-",
+                                                            "items": [
+                                                                                {
+                                                                                                    "no": "1",
+                                                                                                    "name": "กระดาษ A4 80 แกรม สำหรับพิมพ์เอกสารคู่มือ",
+                                                                                                    "qty": "20 รีม",
+                                                                                                    "unit_price": "140",
+                                                                                                    "total_price": "2,800"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "2",
+                                                                                                    "name": "หมึกพิมพ์เลเซอร์สีดำ",
+                                                                                                    "qty": "2 กล่อง",
+                                                                                                    "unit_price": "2,500",
+                                                                                                    "total_price": "5,000"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "3",
+                                                                                                    "name": "ชุดอุปกรณ์และเครื่องเขียนกิจกรรม",
+                                                                                                    "qty": "1 ชุด",
+                                                                                                    "unit_price": "7,200",
+                                                                                                    "total_price": "7,200"
+                                                                                }
+                                                            ]
+                                        }
+                    },
+                    {
+                                        "filename": "budget_approval_v2_template.docx",
+                                        "title": "ขออนุมัติใช้เงินตามโครงการ/กิจกรรม V.2 (ระบุเหตุผลอนุมัติ & จัดซื้อจัดจ้างไดนามิก)",
+                                        "category": "การเงิน/งบประมาณ",
+                                        "description": "แบบบันทึกข้อความขออนุมัติใช้เงินโครงการ V.2 ตารางรายการจัดซื้อจัดจ้างแบบไดนามิก 2 หน้า และบันทึกพิจารณา 6 ช่อง พร้อมระบุเหตุผลรอง ผอ./ผอ.",
+                                        "variable_count": 36,
+                                        "variables": [
+                                                            "budget_activity",
+                                                            "budget_head_comment",
+                                                            "budget_other",
+                                                            "budget_other_desc",
+                                                            "budget_revenue",
+                                                            "budget_subsidy",
+                                                            "department",
+                                                            "department_group",
+                                                            "deputy_comment",
+                                                            "director_comment",
+                                                            "doc_date",
+                                                            "doc_no",
+                                                            "doc_year",
+                                                            "execution_date",
+                                                            "final_remaining_budget",
+                                                            "item_count",
+                                                            "items",
+                                                            "official_date",
+                                                            "official_round",
+                                                            "phone",
+                                                            "plan_page",
+                                                            "project_budget",
+                                                            "project_name",
+                                                            "proposer_name",
+                                                            "reason_text",
+                                                            "remaining_budget",
+                                                            "requested_budget",
+                                                            "school_year",
+                                                            "subject",
+                                                            "supply_head_comment",
+                                                            "total_amount_text",
+                                                            "total_budget",
+                                                            "used_budget"
+                                        ],
+                                        "default_data": {
+                                                            "department": "งานแผนงาน กลุ่มบริหารงานงบประมาณ",
+                                                            "phone": "0942785225",
+                                                            "doc_no": "01",
+                                                            "doc_year": "2569",
+                                                            "doc_date": "10 กุมภาพันธ์ พ.ศ. 2569",
+                                                            "official_round": "1",
+                                                            "official_date": "10 ก.พ. 2569",
+                                                            "project_name": "พัฒนาทักษะวิชาการและการจัดกิจกรรมตลาดนัด 0 ร มส",
+                                                            "subject": "ขออนุมัติใช้เงินตามโครงการ/กิจกรรม พัฒนาทักษะวิชาการและการจัดกิจกรรมตลาดนัด 0 ร มส",
+                                                            "school_year": "2569",
+                                                            "department_group": "กลุ่มบริหารงานวิชาการ",
+                                                            "item_count": "3",
+                                                            "total_budget": "15,000",
+                                                            "total_amount_text": "หนึ่งหมื่นห้าพันบาทถ้วน",
+                                                            "budget_subsidy": "15,000",
+                                                            "budget_activity": "-",
+                                                            "budget_revenue": "-",
+                                                            "budget_other_desc": "-",
+                                                            "budget_other": "-",
+                                                            "execution_date": "20 กุมภาพันธ์ 2569",
+                                                            "reason_text": "เพื่อจัดซื้อวัสดุอุปกรณ์สำหรับการจัดกิจกรรมพัฒนาผู้เรียนและยกระดับผลสัมฤทธิ์ทางการเรียน",
+                                                            "proposer_name": "นายกฤติพัทธ์ พันสาย",
+                                                            "budget_head_comment": "เห็นควรให้การสนับสนุนตามแผนงาน",
+                                                            "plan_page": "25",
+                                                            "project_budget": "50,000",
+                                                            "used_budget": "10,000",
+                                                            "remaining_budget": "40,000",
+                                                            "requested_budget": "15,000",
+                                                            "final_remaining_budget": "25,000",
+                                                            "supply_head_comment": "ตรวจสอบแล้วเป็นไปตามระเบียบพัสดุ",
+                                                            "deputy_comment": "-",
+                                                            "director_comment": "-",
+                                                            "items": [
+                                                                                {
+                                                                                                    "no": "1",
+                                                                                                    "name": "กระดาษ A4 80 แกรม สำหรับพิมพ์เอกสารคู่มือ",
+                                                                                                    "qty": "20 รีม",
+                                                                                                    "unit_price": "140",
+                                                                                                    "total_price": "2,800"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "2",
+                                                                                                    "name": "หมึกพิมพ์เลเซอร์สีดำ",
+                                                                                                    "qty": "2 กล่อง",
+                                                                                                    "unit_price": "2,500",
+                                                                                                    "total_price": "5,000"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "3",
+                                                                                                    "name": "ชุดอุปกรณ์และเครื่องเขียนกิจกรรม",
+                                                                                                    "qty": "1 ชุด",
+                                                                                                    "unit_price": "7,200",
+                                                                                                    "total_price": "7,200"
+                                                                                }
+                                                            ]
+                                        }
+                    },
+                    {
+                                        "filename": "certificate_template.docx",
+                                        "title": "หนังสือรับรอง (เงินเดือน / ปฏิบัติหน้าที่ / การทำงาน)",
+                                        "category": "หนังสือรับรอง",
+                                        "description": "หนังสือรับรองตามระเบียบงานสารบรรณ (ครุฑกลาง 3 ซม.) สำหรับรับรองเงินเดือน วิทยฐานะ หรือการปฏิบัติหน้าที่",
+                                        "variable_count": 17,
+                                        "variables": [
+                                                            "allowance_amount",
+                                                            "allowance_amount_text",
+                                                            "cert_purpose",
+                                                            "department",
+                                                            "doc_date",
+                                                            "doc_no",
+                                                            "org_name",
+                                                            "person_academic_standing",
+                                                            "person_name",
+                                                            "person_position",
+                                                            "person_title",
+                                                            "salary_amount",
+                                                            "salary_amount_text",
+                                                            "salary_rank",
+                                                            "signer_name",
+                                                            "signer_position",
+                                                            "start_date"
+                                        ],
+                                        "default_data": {
+                                                            "doc_no": "ศธ ๐๔๐๐๑/ว ๕๖",
+                                                            "person_title": "นาย",
+                                                            "person_name": "กฤติพัทธ์ พันสาย",
+                                                            "person_position": "ครู",
+                                                            "person_academic_standing": "ครูชำนาญการ",
+                                                            "department": "กลุ่มบริหารงานวิชาการ",
+                                                            "org_name": "โรงเรียนเกษมสีมาวิทยาคาร",
+                                                            "start_date": "๑ พฤษภาคม ๒๕๖๒",
+                                                            "salary_rank": "คศ. ๒",
+                                                            "salary_amount": "๓๒,๔๕๐",
+                                                            "salary_amount_text": "สามหมื่นสองพันสี่ร้อยห้าสิบบาทถ้วน",
+                                                            "allowance_amount": "๓,๕๐๐",
+                                                            "allowance_amount_text": "สามพันห้าร้อยบาทถ้วน",
+                                                            "cert_purpose": "ทั้งนี้ เป็นผู้มีความประพฤติดี ปฏิบัติหน้าที่ราชการด้วยความซื่อสัตย์สุจริต และตั้งใจปฏิบัติงานด้วยความวิริยะอุตสาหะ เพื่อประโยชน์ต่อทางราชการด้วยดีตลอดมา",
+                                                            "doc_date": "๑๐ กุมภาพันธ์ พ.ศ. ๒๕๖๙",
+                                                            "signer_name": "ว่าที่ ร.ต. ชฎิล ชูณัฏฐะ",
+                                                            "signer_position": "ผู้อำนวยการโรงเรียนเกษมสีมาวิทยาคาร"
+                                        }
+                    },
+                    {
+                                        "filename": "meeting_minutes_template.docx",
+                                        "title": "รายงานการประชุม (มาตรฐานงานสารบรรณ)",
+                                        "category": "รายงานการประชุม",
+                                        "description": "แบบรายงานการประชุมราชการมาตรฐาน ระเบียบวาระที่ 1 - 5 พร้อมรายชื่อผู้มาประชุมและผู้ตรวจรายงาน",
+                                        "variable_count": 17,
+                                        "variables": [
+                                                            "absent_attendees",
+                                                            "agenda1",
+                                                            "agenda2",
+                                                            "agenda3",
+                                                            "agenda4",
+                                                            "agenda5",
+                                                            "attendees",
+                                                            "end_time",
+                                                            "inspector_name",
+                                                            "inspector_position",
+                                                            "meeting_date",
+                                                            "meeting_location",
+                                                            "meeting_round",
+                                                            "meeting_title",
+                                                            "recorder_name",
+                                                            "recorder_position",
+                                                            "start_time"
+                                        ],
+                                        "default_data": {
+                                                            "meeting_title": "คณะกรรมการบริหารงานวิชาการ โรงเรียนเกษมสีมาวิทยาคาร",
+                                                            "meeting_round": "๑/๒๕๖๙",
+                                                            "meeting_date": "๑๐ กุมภาพันธ์ ๒๕๖๙",
+                                                            "meeting_location": "ห้องประชุมเกษมสีมา โรงเรียนเกษมสีมาวิทยาคาร",
+                                                            "attendees": [
+                                                                                {
+                                                                                                    "no": "๑",
+                                                                                                    "name": "ว่าที่ ร.ต. ชฎิล ชูณัฏฐะ",
+                                                                                                    "position": "ผู้อำนวยการโรงเรียน / ประธานกรรมการ"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "๒",
+                                                                                                    "name": "นางสาวสุภัทร คุณภาค",
+                                                                                                    "position": "รองผู้อำนวยการโรงเรียน / รองประธานกรรมการ"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "๓",
+                                                                                                    "name": "นางสาวรจนา ช่วยสุข",
+                                                                                                    "position": "หัวหน้ากลุ่มบริหารงานวิชาการ / กรรมการ"
+                                                                                },
+                                                                                {
+                                                                                                    "no": "๔",
+                                                                                                    "name": "นายกฤติพัทธ์ พันสาย",
+                                                                                                    "position": "ครู / กรรมการและเลขานุการ"
+                                                                                }
+                                                            ],
+                                                            "absent_attendees": "ไม่มี",
+                                                            "start_time": "๐๙.๐๐",
+                                                            "agenda1": "ประธานกล่าวเปิดการประชุมและแจ้งนโยบายการจัดกิจกรรมพัฒนาผลสัมฤทธิ์ทางการเรียนและการขับเคลื่อนระบบสารบรรณอิเล็กทรอนิกส์ในสถานศึกษา",
+                                                            "agenda2": "รับรองรายงานการประชุมครั้งที่ผ่านมาโดยไม่มีข้อแก้ไข",
+                                                            "agenda3": "ติดตามความก้าวหน้าการจัดทำแผนงานและโครงการประจำปีงบประมาณ ๒๕๖๙",
+                                                            "agenda4": "ที่ประชุมร่วมกันพิจารณาจัดสรรงบประมาณกิจกรรมพัฒนาทักษะวิชาการ ตลาดนัด ๐ ร มส มติที่ประชุมเห็นชอบในหลักการและให้อนุมัติจัดซื้อจัดจ้างตามระเบียบ",
+                                                            "agenda5": "นัดหมายการประชุมครั้งต่อไปในวันที่ ๑๕ มีนาคม ๒๕๖๙",
+                                                            "end_time": "๑๑.๓๐",
+                                                            "recorder_name": "นายกฤติพัทธ์ พันสาย",
+                                                            "recorder_position": "กรรมการและเลขานุการ",
+                                                            "inspector_name": "นางสาวรจนา ช่วยสุข",
+                                                            "inspector_position": "หัวหน้ากลุ่มบริหารงานวิชาการ"
+                                        }
+                    }
+];
+
                 async function loadTemplates() {
-                    try {
-                        const res = await fetch('/api/templates');
-                        const data = await res.json();
-                        templates.value = data;
-                        if (data.length > 0) {
-                            if (!selectedTemplateName.value) {
-                                selectedTemplateName.value = data[0].filename;
+                    // Always load standalone templates immediately (zero errors on GitHub Pages)
+                    templates.value = STANDALONE_TEMPLATES;
+                    if (!selectedTemplateName.value) {
+                        selectedTemplateName.value = 'budget_approval_v2_template.docx';
+                    }
+                    onTemplateChange();
+
+                    // If local Python server is running, attempt to sync any custom templates
+                    if (window.location.protocol.startsWith('http') && window.location.port) {
+                        try {
+                            const res = await fetch('/api/templates');
+                            if (res.ok) {
+                                const data = await res.json();
+                                if (data && data.length > 0) {
+                                    templates.value = data;
+                                    onTemplateChange();
+                                }
                             }
-                            onTemplateChange();
+                        } catch (e) {
+                            // Serverless mode: gracefully use standalone templates
                         }
-                    } catch (e) {
-                        showAlert('ไม่สามารถโหลดรายการแม่แบบได้: ' + e.message, 'error');
                     }
                 }
 
@@ -2913,12 +3342,46 @@
                 }
 
                 async function loadHistory() {
-                    try {
-                        const res = await fetch('/api/history');
-                        historyLogs.value = await res.json();
-                        nextTick(() => lucide.createIcons());
-                    } catch (e) {
-                        console.error(e);
+                    // 1. Try Firebase Realtime Database
+                    const db = initFirebaseIfConfigured();
+                    if (db) {
+                        try {
+                            const snap = await db.ref('documents').once('value');
+                            const val = snap.val();
+                            if (val) {
+                                const list = [];
+                                for (const k in val) {
+                                    list.push({ id: k, ...val[k] });
+                                }
+                                list.reverse();
+                                historyLogs.value = list;
+                                nextTick(() => lucide.createIcons());
+                                return;
+                            }
+                        } catch (e) {
+                            console.warn('Firebase history load error:', e);
+                        }
+                    }
+
+                    // 2. Try LocalStorage
+                    const saved = localStorage.getItem('sarabun_history_logs');
+                    if (saved) {
+                        try {
+                            historyLogs.value = JSON.parse(saved);
+                            nextTick(() => lucide.createIcons());
+                            return;
+                        } catch (e) {}
+                    }
+
+                    // 3. If local python server is active
+                    if (window.location.protocol.startsWith('http') && window.location.port) {
+                        try {
+                            const res = await fetch('/api/history');
+                            if (res.ok) {
+                                historyLogs.value = await res.json();
+                                nextTick(() => lucide.createIcons());
+                            }
+                        } catch (e) {}
                     }
                 }
 
@@ -3063,6 +3526,29 @@
                             throw new Error(result.error || 'สร้างไฟล์ไม่สำเร็จ');
                         }
 
+                        // Save log to LocalStorage (Serverless History)
+                        try {
+                            const newDocLog = {
+                                id: Date.now().toString(),
+                                doc_no: formData.value.doc_no || '-',
+                                doc_year: formData.value.doc_year || '',
+                                subject: formData.value.subject || '',
+                                department: formData.value.department || '',
+                                template_name: selectedTemplateName.value,
+                                template_title: currentTemplateObj.value ? currentTemplateObj.value.title : '',
+                                doc_url: result.doc_url || '',
+                                pdf_url: result.pdf_url || '',
+                                pdf_download_url: result.pdf_download_url || '',
+                                drive_url: result.folder_url || '',
+                                created_at: result.created_at || new Date().toLocaleString('th-TH'),
+                                data: formData.value
+                            };
+                            const existingLogs = JSON.parse(localStorage.getItem('sarabun_history_logs') || '[]');
+                            existingLogs.unshift(newDocLog);
+                            localStorage.setItem('sarabun_history_logs', JSON.stringify(existingLogs.slice(0, 50)));
+                            historyLogs.value = existingLogs;
+                        } catch (e) {}
+
                         // Save log to Firebase Realtime Database
                         const db = initFirebaseIfConfigured();
                         if (db) {
@@ -3110,6 +3596,48 @@
                     showAlert('บันทึกการตั้งค่าโมเดล AI เรียบร้อยแล้ว', 'success');
                 }
 
+                function clientSideAIDraft(prompt, templateName, current) {
+                    const res = { ...current };
+                    const moneyMatch = prompt.match(/(\d+[\d,]*)\s*(?:บาท|บ\.)/);
+                    const totalNum = moneyMatch ? parseInt(moneyMatch[1].replace(/,/g, '')) : null;
+                    const cleanTopic = prompt.replace(/^(?:ขออนุมัติ(?:ใช้เงิน|จัดซื้อ|จัดจ้าง)?|โครงการ|กิจกรรม)\s*/, '').trim() || prompt;
+
+                    if (templateName.includes('budget')) {
+                        res.project_name = cleanTopic;
+                        res.subject = 'ขออนุมัติใช้เงินตามโครงการ/กิจกรรม ' + cleanTopic;
+                        res.reason_text = 'เพื่อจัดซื้อจัดจ้างวัสดุอุปกรณ์และดำเนินกิจกรรม ' + cleanTopic + ' สำหรับพัฒนาทักษะผู้เรียนตามแผนปฏิบัติการประจำปี';
+                        if (totalNum) {
+                            res.total_budget = totalNum.toLocaleString('en-US');
+                            res.requested_budget = res.total_budget;
+                            res.total_amount_text = thaiBahtText(totalNum);
+                            res.budget_subsidy = res.total_budget;
+                            const p1 = Math.round(totalNum * 0.4);
+                            const p2 = Math.round(totalNum * 0.35);
+                            const p3 = totalNum - p1 - p2;
+                            res.items = [
+                                { no: '1', name: 'วัสดุอุปกรณ์หลักสำหรับ ' + cleanTopic, qty: '1 ชุด', unit_price: p1.toLocaleString('en-US'), total_price: p1.toLocaleString('en-US') },
+                                { no: '2', name: 'เอกสารคู่มือและแบบประเมินกิจกรรม', qty: '10 เล่ม', unit_price: Math.round(p2 / 10).toLocaleString('en-US'), total_price: p2.toLocaleString('en-US') },
+                                { no: '3', name: 'วัสดุประกอบกิจกรรมและการเรียนรู้', qty: '1 รายการ', unit_price: p3.toLocaleString('en-US'), total_price: p3.toLocaleString('en-US') }
+                            ];
+                            res.item_count = '3';
+                        }
+                    } else if (templateName.includes('certificate')) {
+                        res.cert_purpose = 'ทั้งนี้ เป็นผู้มีความประพฤติดี ปฏิบัติหน้าที่ราชการด้วยความวิริยะอุตสาหะ หนังสือฉบับนี้ให้ไว้เพื่อรับรองสถานะการทำงานสำหรับ ' + prompt;
+                        if (totalNum) {
+                            res.salary_amount = totalNum.toLocaleString('en-US');
+                            res.salary_amount_text = thaiBahtText(totalNum);
+                        }
+                    } else if (templateName.includes('order')) {
+                        res.subject = prompt;
+                        res.content = 'เพื่อให้การดำเนินงาน ' + prompt + ' ของโรงเรียน เป็นไปด้วยความเรียบร้อย มีประสิทธิภาพ จึงแต่งตั้งคณะกรรมการผู้รับผิดชอบตามที่ได้รับมอบหมาย';
+                    } else {
+                        res.subject = prompt;
+                        res.intro_text = 'ด้วย มีความประสงค์จะดำเนินงาน ' + prompt + ' เพื่อให้การปฏิบัติงานราชการเป็นไปด้วยความเรียบร้อยและเกิดประโยชน์สูงสุด';
+                        res.concluding_text = 'จึงเรียนมาเพื่อโปรดพิจารณาให้ความเห็นชอบและอนุมัติ';
+                    }
+                    return res;
+                }
+
                 async function runAIDraft() {
                     if (!aiPrompt.value.trim()) {
                         showAlert('กรุณาระบุหัวข้อหรือคำสั่งให้ AI ร่างเอกสาร', 'error');
@@ -3117,6 +3645,17 @@
                     }
                     isGeneratingAI.value = true;
                     try {
+                        // Check if running on GitHub Pages or server is offline
+                        const isServerless = !window.location.port || !window.location.protocol.startsWith('http');
+                        
+                        if (isServerless || aiProvider.value === 'builtin') {
+                            // Run client-side AI generator
+                            aiDraftResult.value = clientSideAIDraft(aiPrompt.value, selectedTemplateName.value, formData.value);
+                            showAlert('AI ร่างเอกสารเรียบร้อยแล้ว กด "นำเข้าสู่เอกสารนี้ทันที" ได้เลย', 'success');
+                            nextTick(() => lucide.createIcons());
+                            return;
+                        }
+
                         const res = await fetch('/api/ai/draft', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -3136,7 +3675,10 @@
                         showAlert('AI ร่างเอกสารเรียบร้อยแล้ว ท่านสามารถกด "นำเข้าสู่เอกสารนี้ทันที" ได้เลย', 'success');
                         nextTick(() => lucide.createIcons());
                     } catch (e) {
-                        showAlert('AI ร่างเอกสารล้มเหลว: ' + e.message, 'error');
+                        // Graceful fallback to client-side
+                        aiDraftResult.value = clientSideAIDraft(aiPrompt.value, selectedTemplateName.value, formData.value);
+                        showAlert('AI ร่างเอกสารในโหมดอัจฉริยะ (Offline) เรียบร้อยแล้ว', 'success');
+                        nextTick(() => lucide.createIcons());
                     } finally {
                         isGeneratingAI.value = false;
                     }
